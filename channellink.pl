@@ -50,7 +50,8 @@ sub dazeus_event {
 		$tochan = $channel1;
 	}
 	if($e eq "PRIVMSG") {
-		$to->message($tonet, $tochan, $event->{'params'}[3]);
+		my $message = '<' . $event->{'params'}[1] . '> ' . $event->{'params'}[3];
+		$to->message($tonet, $tochan, $message);
 	}
 }
 
