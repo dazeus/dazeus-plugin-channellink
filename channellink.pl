@@ -41,7 +41,7 @@ sub dazeus_event {
 	}
 	my $e = uc($event->{event});
 	if($e eq "PRIVMSG") {
-		$to->message($tonet, $tochan, $e->{'params'}[2]);
+		$to->message($tonet, $tochan, $event->{'params'}[3]);
 	}
 }
 
