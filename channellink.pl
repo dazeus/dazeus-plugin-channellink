@@ -12,7 +12,7 @@ if(@ARGV && $ARGV[0] eq "--one-way") {
 }
 
 my ($socket1, $network1, $channel1, $socket2, $network2, $channel2) = @ARGV;
-if(!$network) {
+if(!$channel2) {
 	die "Usage: $0 [--one-way] socket1 network1 channel1 socket2 network2 channel2"
 }
 
