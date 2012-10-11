@@ -27,19 +27,28 @@ if(!network_known($dazeus1, $network1)) {
 
 sub dazeus_event {
 	my ($from, $event) = @_;
+	my $e = uc($event->{event});
+	my $fromnet = $event->{'params'}[0];
+	my $fromchan = $event->{'params'}[2];
+
 	my ($to, $tonet, $tochan);
 	if($from == $dazeus1) {
+		if($fromnet ne $network1 || $fromchan ne $channel1) {
+			return;
+		}
 		$to = $dazeus2;
 		$tonet = $network2;
 		$tochan = $channel2;
 	} elsif($one_way) {
 		return;
 	} else {
+		if($fromnet ne $network2 || $fromchan ne $channel2) {
+			return;
+		}
 		$to = $dazeus1;
 		$tonet = $network1;
 		$tochan = $channel1;
 	}
-	my $e = uc($event->{event});
 	if($e eq "PRIVMSG") {
 		$to->message($tonet, $tochan, $event->{'params'}[3]);
 	}
